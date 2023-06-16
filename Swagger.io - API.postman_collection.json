@@ -1,0 +1,1653 @@
+{
+	"info": {
+		"_postman_id": "a6676725-ef32-4737-a0a3-8a4a55881003",
+		"name": "Swagger.io - API",
+		"description": "**DESCRIÇÃO**:\n\nPlano de testes com cenários de testes manuais e automatizados do projeto pessoal da Swagger.io de serviços de uma loja de pet.\n\n**Autor: Murillo Miranda**",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19547442"
+	},
+	"item": [
+		{
+			"name": "Cenarios Manuais",
+			"item": [
+				{
+					"name": "Store",
+					"item": [
+						{
+							"name": "Inventory",
+							"item": [
+								{
+									"name": "Store Inventory",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://petstore.swagger.io/v2/store/inventory/",
+											"protocol": "https",
+											"host": [
+												"petstore",
+												"swagger",
+												"io"
+											],
+											"path": [
+												"v2",
+												"store",
+												"inventory",
+												""
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Order",
+							"item": [
+								{
+									"name": "Store Order",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"id\": 112233,\n  \"petId\": 112233,\n  \"quantity\": 1,\n  \"shipDate\": \"2022-05-17T15:55:13.105Z\",\n  \"status\": \"placed\",\n  \"complete\": true\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://petstore.swagger.io/v2/store/order/",
+											"protocol": "https",
+											"host": [
+												"petstore",
+												"swagger",
+												"io"
+											],
+											"path": [
+												"v2",
+												"store",
+												"order",
+												""
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Find Order",
+							"item": [
+								{
+									"name": "Find Order",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://petstore.swagger.io/v2/store/order/112233",
+											"protocol": "https",
+											"host": [
+												"petstore",
+												"swagger",
+												"io"
+											],
+											"path": [
+												"v2",
+												"store",
+												"order",
+												"112233"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Delete Order",
+							"item": [
+								{
+									"name": "Delete Order",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"id\": 112233,\n  \"petId\": 112233,\n  \"quantity\": 1,\n  \"shipDate\": \"2022-05-17T15:55:13.105Z\",\n  \"status\": \"placed\",\n  \"complete\": true\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://petstore.swagger.io/v2/store/order/112233",
+											"protocol": "https",
+											"host": [
+												"petstore",
+												"swagger",
+												"io"
+											],
+											"path": [
+												"v2",
+												"store",
+												"order",
+												"112233"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Pet",
+					"item": [
+						{
+							"name": "Add",
+							"item": [
+								{
+									"name": "Add New Pet",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"//Teste de validação do status code = 200",
+													"pm.test(\"Resultado: Status code igual a 200\", function () {",
+													"        pm.response.to.have.status(200);",
+													"});",
+													"",
+													"//Teste de validação do status code = OK",
+													"pm.test(\"Resultado: Status code igual a OK\", function () {",
+													"        pm.response.to.have.status(\"OK\");",
+													"});",
+													"",
+													"//Teste de validação de tempo de execução menor que 2 segundos",
+													"pm.test(\"Resultado: O tempo do response é menor que 3 segundos\", function () {",
+													"        pm.expect(pm.response.responseTime).to.be.below(3000);",
+													"});",
+													"",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"id\": 11223344,\n  \"category\": {\n    \"id\": 1,\n    \"name\": \"Category 1\"\n  },\n  \"name\": \"Kako 5\",\n  \"photoUrls\": [\n    \"photo1\"\n  ],\n  \"tags\": [\n    {\n      \"id\": 1,\n      \"name\": \"Tag1\"\n    }\n  ],\n  \"status\": \"available\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://petstore.swagger.io/v2/pet",
+											"protocol": "https",
+											"host": [
+												"petstore",
+												"swagger",
+												"io"
+											],
+											"path": [
+												"v2",
+												"pet"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Update Pet in Store",
+							"item": [
+								{
+									"name": "Update Pet in Store",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"//Teste de validação do status code = 200",
+													"pm.test(\"Resultado: Status code igual a 200\", function () {",
+													"        pm.response.to.have.status(200);",
+													"});",
+													"",
+													"//Teste de validação do status code = OK",
+													"pm.test(\"Resultado: Status code igual a OK\", function () {",
+													"        pm.response.to.have.status(\"OK\");",
+													"});",
+													"",
+													"//Teste de validação de tempo de execução menor que 2 segundos",
+													"pm.test(\"Resultado: O tempo do response é menor que 3 segundos\", function () {",
+													"        pm.expect(pm.response.responseTime).to.be.below(3000);",
+													"});",
+													"",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://petstore.swagger.io/v2/pet/{{id_pet}}?name={{pet_name}}&status={{pet_status}}",
+											"protocol": "https",
+											"host": [
+												"petstore",
+												"swagger",
+												"io"
+											],
+											"path": [
+												"v2",
+												"pet",
+												"{{id_pet}}"
+											],
+											"query": [
+												{
+													"key": "name",
+													"value": "{{pet_name}}"
+												},
+												{
+													"key": "status",
+													"value": "{{pet_status}}"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Update",
+							"item": [
+								{
+									"name": "Update Pet",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"id\": 1122,\n  \"category\": {\n    \"id\": 1,\n    \"name\": \"Category 1\"\n  },\n  \"name\": \"Kako 2\",\n  \"photoUrls\": [\n    \"photo1\"\n  ],\n  \"tags\": [\n    {\n      \"id\": 1,\n      \"name\": \"Tag1\"\n    }\n  ],\n  \"status\": \"available\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://petstore.swagger.io/v2/pet",
+											"protocol": "https",
+											"host": [
+												"petstore",
+												"swagger",
+												"io"
+											],
+											"path": [
+												"v2",
+												"pet"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Find By Status",
+							"item": [
+								{
+									"name": "Find By Status",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://petstore.swagger.io/v2/pet/findByStatus",
+											"protocol": "https",
+											"host": [
+												"petstore",
+												"swagger",
+												"io"
+											],
+											"path": [
+												"v2",
+												"pet",
+												"findByStatus"
+											],
+											"query": [
+												{
+													"key": "status",
+													"value": "available",
+													"disabled": true
+												},
+												{
+													"key": "status",
+													"value": "peinding",
+													"disabled": true
+												},
+												{
+													"key": "status",
+													"value": "sold",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Find By ID",
+							"item": [
+								{
+									"name": "Find By ID",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://petstore.swagger.io/v2/pet/1122",
+											"protocol": "https",
+											"host": [
+												"petstore",
+												"swagger",
+												"io"
+											],
+											"path": [
+												"v2",
+												"pet",
+												"1122"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Delete Pet",
+							"item": [
+								{
+									"name": "Delete Pet",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://petstore.swagger.io/v2/pet/1122",
+											"protocol": "https",
+											"host": [
+												"petstore",
+												"swagger",
+												"io"
+											],
+											"path": [
+												"v2",
+												"pet",
+												"1122"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "User",
+					"item": [
+						{
+							"name": "Create User",
+							"item": [
+								{
+									"name": "Create User",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"//Teste de validação do status code = 200",
+													"pm.test(\"Resultado: Status code igual a 200\", function () {",
+													"        pm.response.to.have.status(200);",
+													"});",
+													"",
+													"//Teste de validação do status code = OK",
+													"pm.test(\"Resultado: Status code igual a OK\", function () {",
+													"        pm.response.to.have.status(\"OK\");",
+													"});",
+													"",
+													"//Teste de validação de tempo de execução menor que 2 segundos",
+													"pm.test(\"Resultado: O tempo do response é menor que 3 segundos\", function () {",
+													"        pm.expect(pm.response.responseTime).to.be.below(3000);",
+													"});",
+													"",
+													"",
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"id\": 11221234444,\n    \"username\": \"MURO2\",\n    \"firstName\": \"MURILLO\",\n    \"lastName\": \"QA QA\",\n    \"email\": \"qa@qa.com.br\",\n    \"password\": \"qa123\",\n    \"phone\": \"551199887788\",\n    \"userStatus\": 1\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://petstore.swagger.io/v2/user",
+											"protocol": "https",
+											"host": [
+												"petstore",
+												"swagger",
+												"io"
+											],
+											"path": [
+												"v2",
+												"user"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Update User",
+							"item": [
+								{
+									"name": "Update User",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"id\": {{id_user}},\n    \"username\": \"MURO\",\n    \"firstName\": \"MURILL11\",\n    \"lastName\": \"QA\",\n    \"email\": \"qa@qa.com.br\",\n    \"password\": \"qa123\",\n    \"phone\": \"551199887788\",\n    \"userStatus\": 1\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://petstore.swagger.io/v2/user/MURO",
+											"protocol": "https",
+											"host": [
+												"petstore",
+												"swagger",
+												"io"
+											],
+											"path": [
+												"v2",
+												"user",
+												"MURO"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Delete User",
+							"item": [
+								{
+									"name": "Delete User",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://petstore.swagger.io/v2/user/MURO",
+											"protocol": "https",
+											"host": [
+												"petstore",
+												"swagger",
+												"io"
+											],
+											"path": [
+												"v2",
+												"user",
+												"MURO"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Login User",
+							"item": [
+								{
+									"name": "Login User",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"//Teste de validação do status code = 200",
+													"pm.test(\"Resultado: Status code igual a 200\", function () {",
+													"        pm.response.to.have.status(200);",
+													"});",
+													"",
+													"//Teste de validação do status code = OK",
+													"pm.test(\"Resultado: Status code igual a OK\", function () {",
+													"        pm.response.to.have.status(\"OK\");",
+													"});",
+													"",
+													"//Teste de validação de tempo de execução menor que 2 segundos",
+													"pm.test(\"Resultado: O tempo do response é menor que 3 segundos\", function () {",
+													"        pm.expect(pm.response.responseTime).to.be.below(3000);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://petstore.swagger.io/v2/user/login?username={{user_username}}&password={{user_password}}",
+											"protocol": "https",
+											"host": [
+												"petstore",
+												"swagger",
+												"io"
+											],
+											"path": [
+												"v2",
+												"user",
+												"login"
+											],
+											"query": [
+												{
+													"key": "username",
+													"value": "{{user_username}}"
+												},
+												{
+													"key": "password",
+													"value": "{{user_password}}"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Logout User",
+							"item": [
+								{
+									"name": "Logout User",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://petstore.swagger.io/v2/user/logout",
+											"protocol": "https",
+											"host": [
+												"petstore",
+												"swagger",
+												"io"
+											],
+											"path": [
+												"v2",
+												"user",
+												"logout"
+											],
+											"query": [
+												{
+													"key": "username",
+													"value": "MURO",
+													"disabled": true
+												},
+												{
+													"key": "password",
+													"value": "qa123",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Get User By Name",
+							"item": [
+								{
+									"name": "Get User By Name",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"//Teste de validação do status code = 200",
+													"pm.test(\"Resultado: Status code igual a 200\", function () {",
+													"        pm.response.to.have.status(200);",
+													"});",
+													"",
+													"//Teste de validação do status code = OK",
+													"pm.test(\"Resultado: Status code igual a OK\", function () {",
+													"        pm.response.to.have.status(\"OK\");",
+													"});",
+													"",
+													"//Teste de validação de tempo de execução menor que 2 segundos",
+													"pm.test(\"Resultado: O tempo do response é menor que 3 segundos\", function () {",
+													"        pm.expect(pm.response.responseTime).to.be.below(3000);",
+													"});",
+													"",
+													"",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://petstore.swagger.io/v2/user/{{user_username2}}",
+											"protocol": "https",
+											"host": [
+												"petstore",
+												"swagger",
+												"io"
+											],
+											"path": [
+												"v2",
+												"user",
+												"{{user_username2}}"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Create List User Array",
+							"item": [
+								{
+									"name": "Create List User Array",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "[\n    {\n        \"id\": 2233,\n        \"username\": \"mmm\",\n        \"firstName\": \"uuu\",\n        \"lastName\": \"dddd\",\n        \"email\": \"dsdsd@dds.com\",\n        \"password\": \"qa1122\",\n        \"phone\": \"5511988774477\",\n        \"userStatus\": 1\n    }\n]",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://petstore.swagger.io/v2/user/createWithArray",
+											"protocol": "https",
+											"host": [
+												"petstore",
+												"swagger",
+												"io"
+											],
+											"path": [
+												"v2",
+												"user",
+												"createWithArray"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Create List User List",
+							"item": [
+								{
+									"name": "Create With List",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "[\n    {\n        \"id\": 0,\n        \"username\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"email\": \"string\",\n        \"password\": \"string\",\n        \"phone\": \"string\",\n        \"userStatus\": 0\n    }\n]",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://petstore.swagger.io/v2/user/createWithList",
+											"protocol": "https",
+											"host": [
+												"petstore",
+												"swagger",
+												"io"
+											],
+											"path": [
+												"v2",
+												"user",
+												"createWithList"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Cenarios Automatizados",
+			"item": [
+				{
+					"name": "User",
+					"item": [
+						{
+							"name": "Create User",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"//Teste de validação do status code = 200",
+											"pm.test(\"Resultado: Status code igual a 200\", function () {",
+											"        pm.response.to.have.status(200);",
+											"});",
+											"",
+											"//Teste de validação do status code = OK",
+											"pm.test(\"Resultado: Status code igual a OK\", function () {",
+											"        pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"//Teste de validação de tempo de execução menor que 3 segundos",
+											"pm.test(\"Resultado: O tempo do response é menor que 3 segundos\", function () {",
+											"        pm.expect(pm.response.responseTime).to.be.below(3000);",
+											"});",
+											"",
+											"//Teste de validação do valor dos parâmetros do response",
+											"pm.test(\"Resultado: O status do usuario é igual a Success\", function () {",
+											"        const jsonData = JSON.parse(responseBody);",
+											"        pm.expect(jsonData.type).to.include(\"unknown\");",
+											"        pm.expect(jsonData.message).to.include(\"11223322\");       ",
+											"});",
+											"",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": 11223322,\n    \"username\": \"MURO22\",\n    \"firstName\": \"MURILLO2\",\n    \"lastName\": \"QA QA2\",\n    \"email\": \"qa@qa.com.br\",\n    \"password\": \"qa222\",\n    \"phone\": \"551199887782\",\n    \"userStatus\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://petstore.swagger.io/v2/user",
+									"protocol": "https",
+									"host": [
+										"petstore",
+										"swagger",
+										"io"
+									],
+									"path": [
+										"v2",
+										"user"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get User By Name",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"//Teste de validação do status code = 200",
+											"pm.test(\"Resultado: Status code igual a 200\", function () {",
+											"        pm.response.to.have.status(200);",
+											"});",
+											"",
+											"//Teste de validação do status code = OK",
+											"pm.test(\"Resultado: Status code igual a OK\", function () {",
+											"        pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"//Teste de validação de tempo de execução menor que 3 segundos",
+											"pm.test(\"Resultado: O tempo do response é menor que 3 segundos\", function () {",
+											"        pm.expect(pm.response.responseTime).to.be.below(3000);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://petstore.swagger.io/v2/user/{{user_username}}",
+									"protocol": "https",
+									"host": [
+										"petstore",
+										"swagger",
+										"io"
+									],
+									"path": [
+										"v2",
+										"user",
+										"{{user_username}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Login User",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"//Teste de validação do status code = 200",
+											"pm.test(\"Resultado: Status code igual a 200\", function () {",
+											"        pm.response.to.have.status(200);",
+											"});",
+											"",
+											"//Teste de validação do status code = OK",
+											"pm.test(\"Resultado: Status code igual a OK\", function () {",
+											"        pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"//Teste de validação de tempo de execução menor que 2 segundos",
+											"pm.test(\"Resultado: O tempo do response é menor que 3 segundos\", function () {",
+											"        pm.expect(pm.response.responseTime).to.be.below(3000);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://petstore.swagger.io/v2/user/login?username={{user_username}}&password={{user_password}}",
+									"protocol": "https",
+									"host": [
+										"petstore",
+										"swagger",
+										"io"
+									],
+									"path": [
+										"v2",
+										"user",
+										"login"
+									],
+									"query": [
+										{
+											"key": "username",
+											"value": "{{user_username}}"
+										},
+										{
+											"key": "password",
+											"value": "{{user_password}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Pet",
+					"item": [
+						{
+							"name": "Add New Pet",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"//Teste de validação do status code = 200",
+											"pm.test(\"Resultado: Status code igual a 200\", function () {",
+											"        pm.response.to.have.status(200);",
+											"});",
+											"",
+											"//Teste de validação do status code = OK",
+											"pm.test(\"Resultado: Status code igual a OK\", function () {",
+											"        pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"//Teste de validação de tempo de execução menor que 3 segundos",
+											"pm.test(\"Resultado: O tempo do response é menor que 3 segundos\", function () {",
+											"        pm.expect(pm.response.responseTime).to.be.below(3000);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"id\": 1122334455,\n  \"category\": {\n    \"id\": 1,\n    \"name\": \"Category 1\"\n  },\n  \"name\": \"Kako 5\",\n  \"photoUrls\": [\n    \"photo1\"\n  ],\n  \"tags\": [\n    {\n      \"id\": 1,\n      \"name\": \"Tag1\"\n    }\n  ],\n  \"status\": \"pending\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://petstore.swagger.io/v2/pet",
+									"protocol": "https",
+									"host": [
+										"petstore",
+										"swagger",
+										"io"
+									],
+									"path": [
+										"v2",
+										"pet"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Pet",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"//Teste de validação do status code = 200",
+											"pm.test(\"Resultado: Status code igual a 200\", function () {",
+											"        pm.response.to.have.status(200);",
+											"});",
+											"",
+											"//Teste de validação do status code = OK",
+											"pm.test(\"Resultado: Status code igual a OK\", function () {",
+											"        pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"//Teste de validação de tempo de execução menor que 3 segundos",
+											"pm.test(\"Resultado: O tempo do response é menor que 3 segundos\", function () {",
+											"        pm.expect(pm.response.responseTime).to.be.below(3000);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"id\": {{id_pet}},\n  \"category\": {\n    \"id\": 1,\n    \"name\": \"Category 1\"\n  },\n  \"name\": \"Kako 23\",\n  \"photoUrls\": [\n    \"photo12\"\n  ],\n  \"tags\": [\n    {\n      \"id\": 1,\n      \"name\": \"Tag1\"\n    }\n  ],\n  \"status\": \"available\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://petstore.swagger.io/v2/pet",
+									"protocol": "https",
+									"host": [
+										"petstore",
+										"swagger",
+										"io"
+									],
+									"path": [
+										"v2",
+										"pet"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Find By ID",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"//Teste de validação do status code = 200",
+											"pm.test(\"Resultado: Status code igual a 200\", function () {",
+											"        pm.response.to.have.status(200);",
+											"});",
+											"",
+											"//Teste de validação do status code = OK",
+											"pm.test(\"Resultado: Status code igual a OK\", function () {",
+											"        pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"//Teste de validação de tempo de execução menor que 3 segundos",
+											"pm.test(\"Resultado: O tempo do response é menor que 3 segundos\", function () {",
+											"        pm.expect(pm.response.responseTime).to.be.below(3000);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://petstore.swagger.io/v2/pet/{{id_pet}}",
+									"protocol": "https",
+									"host": [
+										"petstore",
+										"swagger",
+										"io"
+									],
+									"path": [
+										"v2",
+										"pet",
+										"{{id_pet}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Pet in Store",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"//Teste de validação do status code = 200",
+											"pm.test(\"Resultado: Status code igual a 200\", function () {",
+											"        pm.response.to.have.status(200);",
+											"});",
+											"",
+											"//Teste de validação do status code = OK",
+											"pm.test(\"Resultado: Status code igual a OK\", function () {",
+											"        pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"//Teste de validação de tempo de execução menor que 2 segundos",
+											"pm.test(\"Resultado: O tempo do response é menor que 3 segundos\", function () {",
+											"        pm.expect(pm.response.responseTime).to.be.below(3000);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://petstore.swagger.io/v2/pet/{{id_pet}}?name={{pet_name}}&status={{pet_status}}",
+									"protocol": "https",
+									"host": [
+										"petstore",
+										"swagger",
+										"io"
+									],
+									"path": [
+										"v2",
+										"pet",
+										"{{id_pet}}"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "{{pet_name}}"
+										},
+										{
+											"key": "status",
+											"value": "{{pet_status}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Store",
+					"item": [
+						{
+							"name": "Store Order",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"//Teste de validação do status code = 200",
+											"pm.test(\"Resultado: Status code igual a 200\", function () {",
+											"        pm.response.to.have.status(200);",
+											"});",
+											"",
+											"//Teste de validação do status code = OK",
+											"pm.test(\"Resultado: Status code igual a OK\", function () {",
+											"        pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"//Teste de validação de tempo de execução menor que 3 segundos",
+											"pm.test(\"Resultado: O tempo do response é menor que 3 segundos\", function () {",
+											"        pm.expect(pm.response.responseTime).to.be.below(3000);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"id\": 112233,\n  \"petId\": 1122334455,\n  \"quantity\": 1,\n  \"shipDate\": \"2022-05-17T15:55:13.105Z\",\n  \"status\": \"placed\",\n  \"complete\": true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://petstore.swagger.io/v2/store/order/",
+									"protocol": "https",
+									"host": [
+										"petstore",
+										"swagger",
+										"io"
+									],
+									"path": [
+										"v2",
+										"store",
+										"order",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Find Order",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"//Teste de validação do status code = 200",
+											"pm.test(\"Resultado: Status code igual a 200\", function () {",
+											"        pm.response.to.have.status(200);",
+											"});",
+											"",
+											"//Teste de validação do status code = OK",
+											"pm.test(\"Resultado: Status code igual a OK\", function () {",
+											"        pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"//Teste de validação de tempo de execução menor que 3 segundos",
+											"pm.test(\"Resultado: O tempo do response é menor que 3 segundos\", function () {",
+											"        pm.expect(pm.response.responseTime).to.be.below(3000);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://petstore.swagger.io/v2/store/order/{{id_order}}",
+									"protocol": "https",
+									"host": [
+										"petstore",
+										"swagger",
+										"io"
+									],
+									"path": [
+										"v2",
+										"store",
+										"order",
+										"{{id_order}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Order",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"//Teste de validação do status code = 200",
+											"pm.test(\"Resultado: Status code igual a 200\", function () {",
+											"        pm.response.to.have.status(200);",
+											"});",
+											"",
+											"//Teste de validação do status code = OK",
+											"pm.test(\"Resultado: Status code igual a OK\", function () {",
+											"        pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"//Teste de validação de tempo de execução menor que 3 segundos",
+											"pm.test(\"Resultado: O tempo do response é menor que 3 segundos\", function () {",
+											"        pm.expect(pm.response.responseTime).to.be.below(3000);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://petstore.swagger.io/v2/store/order/{{id_order}}",
+									"protocol": "https",
+									"host": [
+										"petstore",
+										"swagger",
+										"io"
+									],
+									"path": [
+										"v2",
+										"store",
+										"order",
+										"{{id_order}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Find Order",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"//Teste de validação do status code = 404",
+											"pm.test(\"Resultado: Status code igual a 404\", function () {",
+											"        pm.response.to.have.status(404);",
+											"});",
+											"",
+											"//Teste de validação do status code = OK",
+											"pm.test(\"Resultado: Status code message igual a Order not found\", function () {",
+											"        pm.response.to.have.status(\"Not Found\");",
+											"});",
+											"",
+											"//Teste de validação de tempo de execução menor que 3 segundos",
+											"pm.test(\"Resultado: O tempo do response é menor que 3 segundos\", function () {",
+											"        pm.expect(pm.response.responseTime).to.be.below(3000);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://petstore.swagger.io/v2/store/order/{{id_order}}",
+									"protocol": "https",
+									"host": [
+										"petstore",
+										"swagger",
+										"io"
+									],
+									"path": [
+										"v2",
+										"store",
+										"order",
+										"{{id_order}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"// [[ USER TESTS ]]:",
+					"//Setando uma variável de ambiente pra reaproveitar o \"id_user\" do request \"Create User\"",
+					"if (pm.info.requestName=='Create User'){",
+					"    pm.environment.set(\"id_user\",pm.response.json().message)",
+					"};",
+					"",
+					"//Setando uma variável de ambiente pra reaproveitar o \"username\" do request \"Get User By Name\"",
+					"if (pm.info.requestName=='Get User By Name'){",
+					"    pm.environment.set(\"user_username\",pm.response.json().username)",
+					"};",
+					"",
+					"//Setando uma variável de ambiente pra reaproveitar o \"password\" do request \"Create User\"",
+					"if (pm.info.requestName=='Get User By Name'){",
+					"    pm.environment.set(\"user_password\",pm.response.json().password)",
+					"};",
+					"",
+					"",
+					"//Condição para gravar o valor do username e reaproveita-lo nos outros serviços",
+					"if (pm.info.requestName=='Create User'){",
+					"",
+					"var req = JSON.parse(request.data);",
+					"",
+					"pm.environment.set(\"user_username\",req.username)",
+					"",
+					"};",
+					"",
+					"//Condição para gravar o valor do password e reaproveita-lo nos outros serviços",
+					"if (pm.info.requestName=='Create User'){",
+					"",
+					"var req = JSON.parse(request.data);",
+					"",
+					"pm.environment.set(\"user_password\",req.password)",
+					"",
+					"};",
+					"",
+					"",
+					"// [[ PETS TESTS]]:",
+					"//Setando uma variável de ambiente pra reaproveitar o \"id_pet\" do request \"Add New Pet\"",
+					"if (pm.info.requestName=='Add New Pet'){",
+					"    pm.environment.set(\"id_pet\",pm.response.json().id)",
+					"};",
+					"",
+					"//Setando uma variável de ambiente pra reaproveitar o \"name\" do request \"Add New Pet\"",
+					"if (pm.info.requestName=='Add New Pet'){",
+					"    pm.environment.set(\"pet_name\",pm.response.json().name)",
+					"};",
+					"",
+					"//Setando uma variável de ambiente pra reaproveitar o \"status\" do request \"Add New Pet\"",
+					"if (pm.info.requestName=='Add New Pet'){",
+					"    pm.environment.set(\"pet_status\",pm.response.json().status)",
+					"};",
+					"",
+					"",
+					"",
+					"// [[ STORE TESTS]]:",
+					"//Setando uma variável de ambiente pra reaproveitar o \"id_order\" do request \"Store Order\"",
+					"if (pm.info.requestName=='Store Order'){",
+					"    pm.environment.set(\"id_order\",pm.response.json().id)",
+					"};",
+					"",
+					""
+				]
+			}
+		}
+	]
+}
